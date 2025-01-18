@@ -1,9 +1,13 @@
 import "../src/index.css";
 
-//👇 Configures Storybook to log the actions( onArchiveTask and onPinTask ) in the UI.
+import { initialize, mswLoader } from "msw-storybook-addon";
+
+initialize();
+
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   parameters: {
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -11,6 +15,7 @@ const preview = {
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;
